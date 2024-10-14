@@ -74,7 +74,13 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		</dependencies>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-ses</artifactId>
+			<version>1.12.773</version>
+		</dependency>
+
+	</dependencies>
 
 	<build>
 		<plugins>

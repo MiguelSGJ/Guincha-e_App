@@ -3,9 +3,24 @@ version: '3.8'
 services:
   postgres:
     image: postgres:latest
+    container_name: guinchae_db
     environment:
-      POSTGRES_DB: guinchaedb
+      POSTGRES_DB: registration
       POSTGRES_USER: admin
-      POSTGRES_PASSWORD: 123456
+      POSTGRES_PASSWORD: admin
     ports:
       - "5432:5432"
+    networks:
+      - postgres-db-network
+volumes:
+  postgres-db-volume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data
+
+networks:
+  postgres-db-network:
+    driver: bridge
+

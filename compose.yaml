@@ -1,17 +1,36 @@
-version: '3.8'
 
 services:
   postgres:
-    image: postgres:latest
     container_name: guinchae_db
+    image: postgres:latest
     environment:
       POSTGRES_DB: registration
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: tales
+      POSTGRES_PASSWORD: tales
+      PGDATA: /var/lib/postgresql/data
     ports:
       - "5432:5432"
     networks:
       - postgres-db-network
+    restart: unless-stopped
+  mail-dev:
+    container_name: mail-dev-guinchae
+    image: maildev/maildev
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+  keycloak:
+    container_name: keycloak-bsn
+    image: quay.io/keycloak/keycloak:24.0.2
+    ports:
+      - "9090:8080"
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    networks:
+      - postgres-db-network
+    command:
+      - "start-dev"
 volumes:
   postgres-db-volume:
     driver: local
@@ -19,6 +38,8 @@ volumes:
       type: none
       o: bind
       device: ./data
+  keycloak:
+    driver: local
 
 networks:
   postgres-db-network:

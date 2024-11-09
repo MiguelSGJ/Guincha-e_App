@@ -1,18 +1,14 @@
+spring:
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 50MB
+springdoc:
+  default-produces-media-type: application/json
 server:
   error:
     include-message: always
     include-binding-errors: always
-
-spring:
-  datasource:
-    password:
-    url: jdbc:postgresql://localhost:5432/registration
-    username:
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
-    show-sql: true
+  servlet:
+    context-path: /api/v1/

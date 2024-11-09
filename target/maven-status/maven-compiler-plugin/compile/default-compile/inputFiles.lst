@@ -1,1 +1,17 @@
 /home/miguel/Workspace/guinchae/src/main/java/com/guinchae/guinchae/GuinchaeApplication.java
+/home/miguel/Workspace/guinchae/src/main/java/com/guinchae/guinchae/auth/AuthenticationController.java
+/home/miguel/Workspace/guinchae/src/main/java/com/guinchae/guinchae/auth/AuthenticationService.java
+/home/miguel/Workspace/guinchae/src/main/java/com/guinchae/guinchae/auth/RegistrationRequest.java
+/home/miguel/Workspace/guinchae/src/main/java/com/guinchae/guinchae/config/BeansConfig.java
+/home/miguel/Workspace/guinchae/src/main/java/com/guinchae/guinchae/email/EmailService.java
+/home/miguel/Workspace/guinchae/src/main/java/com/guinchae/guinchae/email/EmailTemplateName.java
+/home/miguel/Workspace/guinchae/src/main/java/com/guinchae/guinchae/role/Role.java
+/home/miguel/Workspace/guinchae/src/main/java/com/guinchae/guinchae/role/RoleRepository.java
+/home/miguel/Workspace/guinchae/src/main/java/com/guinchae/guinchae/security/JwtFilter.java
+/home/miguel/Workspace/guinchae/src/main/java/com/guinchae/guinchae/security/JwtService.java
+/home/miguel/Workspace/guinchae/src/main/java/com/guinchae/guinchae/security/SecurityConfig.java
+/home/miguel/Workspace/guinchae/src/main/java/com/guinchae/guinchae/security/UserDetailServiceImplementation.java
+/home/miguel/Workspace/guinchae/src/main/java/com/guinchae/guinchae/user/Token.java
+/home/miguel/Workspace/guinchae/src/main/java/com/guinchae/guinchae/user/TokenRepository.java
+/home/miguel/Workspace/guinchae/src/main/java/com/guinchae/guinchae/user/User.java
+/home/miguel/Workspace/guinchae/src/main/java/com/guinchae/guinchae/user/UserRepository.java

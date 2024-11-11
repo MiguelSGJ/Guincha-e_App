@@ -75,7 +75,14 @@
     <div class="content">
         <p>Olá <span th:text="${username}"></span>,</p>
         <p>Obrigado por criar uma conta conosco. Para ativar sua conta e começar a usar nossos serviços, clique no botão abaixo:</p>
-        <div class="activation-code"><span th:text="${activationCode}"></span></div>
+        <div style="text-align: center; margin-top: 20px;">
+            <p style="font-size: 18px; color: #333;">Seu código de ativação:</p>
+            <div class="activation-code"
+                 style="display: inline-block; padding: 10px 20px; background-color: #f0f0f0; border-radius: 8px; border: 1px solid #ddd; margin-top: 10px;">
+        <span th:text="${activation_Code}"
+              style="font-size: 24px; font-weight: bold; color: #007bff; letter-spacing: 2px;"></span>
+            </div>
+        </div>
         <a href="{{confirmationUrl}}" class="button">Ativar Conta</a>
         <p>Se você não criou esta conta, por favor ignore este e-mail.</p>
     </div>

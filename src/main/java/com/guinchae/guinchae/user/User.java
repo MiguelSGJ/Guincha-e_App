@@ -1,6 +1,7 @@
 package com.guinchae.guinchae.user;
 
 import com.guinchae.guinchae.role.Role;
+import com.guinchae.guinchae.vehicle.Vehicle;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -25,22 +26,30 @@ import java.util.stream.Collectors;
 @Entity
 @Table(name = "_user")
 @EntityListeners(AuditingEntityListener.class)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User implements UserDetails, Principal {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
     @Column(unique = true)
     private String email;
+    @Column(unique = true)
+    private String cpf;
+    private String phoneNumber;
+    @Embedded
+    private UserAddress adress;
     private String password;
     private boolean enabled;
     private boolean accountLocked;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Vehicle> vehicles;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)

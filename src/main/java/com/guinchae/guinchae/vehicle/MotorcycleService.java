@@ -16,6 +16,10 @@ public class MotorcycleService {
     public void registerMotorcycle(MotorcycleRegistration motorcycleRegistration) {
         String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
 
+        if(userEmail == null) {
+            throw new RuntimeException("Usuário não autenticado!");
+        }
+
         User user = userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
 
@@ -27,7 +31,7 @@ public class MotorcycleService {
                 .licensePlate(motorcycleRegistration.getLicensePlate())
                 .weight(motorcycleRegistration.getWeight())
                 .towStrapPoints(motorcycleRegistration.getTowStrapPoints())
-                .isElectric(motorcycleRegistration.isEletric())
+                .isElectric(motorcycleRegistration.isElectric())
                 .build();
 
         motorcycleRepository.save(motorcycle);

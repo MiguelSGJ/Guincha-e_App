@@ -30,7 +30,7 @@ public class MotorcycleRegistration {
     @NotEmpty(message = "A Quantidade de pontos de reboque da moto é necessário!")
     @NotBlank(message = "A Quantidade de pontos de reboque da moto é necessário!")
     private int towStrapPoints;
-    private boolean isEletric;
+    private boolean isElectric;
 
 
 }

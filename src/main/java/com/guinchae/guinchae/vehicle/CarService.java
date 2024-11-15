@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CarService {
@@ -15,6 +17,11 @@ public class CarService {
 
     public void registerCar(CarRegistration carRegistration) {
         String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        if(userEmail == null) {
+            throw new RuntimeException("Usuário não autenticado!");
+        }
+
         User user = userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
 
@@ -31,5 +38,12 @@ public class CarService {
                 .build();
 
         carRepository.save(car);
+    }
+
+    public List<Car> getAllCars(String userEmail) {
+        User user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
+
+        return carRepository.findByUser(user);
     }
 }

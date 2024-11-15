@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class TowTruckService {
@@ -18,6 +20,11 @@ public class TowTruckService {
 
     public void registerTowTruck(TowTruckRegistration towTruckRegistration) {
         String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        if(userEmail == null) {
+            throw new RuntimeException("Usuário não autenticado!");
+        }
+
         User user = userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
 
@@ -35,5 +42,12 @@ public class TowTruckService {
                 .build();
 
         towTruckRepository.save(towTruck);
+    }
+
+    public List<TowTruck> getAllTowTrucks(String userEmail) {
+        User user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
+
+        return towTruckRepository.findByUser(user);
     }
 }

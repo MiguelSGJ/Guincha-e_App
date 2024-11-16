@@ -1,6 +1,6 @@
 package com.guinchae.guinchae.security;
 
-import com.guinchae.guinchae.user.UserRepository;
+import com.guinchae.guinchae.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

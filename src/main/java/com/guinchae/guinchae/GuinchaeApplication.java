@@ -1,7 +1,7 @@
 package com.guinchae.guinchae;
 
-import com.guinchae.guinchae.role.Role;
-import com.guinchae.guinchae.role.RoleRepository;
+import com.guinchae.guinchae.model.RoleModel;
+import com.guinchae.guinchae.repository.RoleRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,7 +21,7 @@ public class GuinchaeApplication {
 		return args -> {
 			if(roleRepository.findByName("USER").isEmpty()) {
 				roleRepository.save(
-						Role.builder().name("USER").build()
+						RoleModel.builder().name("USER").build()
 				);
 			}
 		};

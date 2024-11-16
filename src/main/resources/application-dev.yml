@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/registration
+    url: jdbc:postgresql://localhost:5432/guinchae
     username: tales
     password: tales
     driver-class-name: org.postgresql.Driver

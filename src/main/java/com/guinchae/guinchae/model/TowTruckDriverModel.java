@@ -13,10 +13,10 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "_towTruckDriver")
+@Table(name = "_tow_truck_driver")
 public class TowTruckDriverModel extends UserModel {
 
-    @OneToMany(mappedBy = "townTruckDriver", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "towTruckDriver", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<TowTruckModel> towTruckModel;
     private String cnhNumber;
 }

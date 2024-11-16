@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface TowTruckRepository extends JpaRepository<TowTruckModel,Long> {
 
-    List<TowTruckModel> findByUser(UserModel userModel);
+    List<TowTruckModel> findByUserModel(UserModel userModel);
 }

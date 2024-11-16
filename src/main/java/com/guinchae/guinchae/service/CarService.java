@@ -47,6 +47,6 @@ public class CarService {
         UserModel userModel = userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
 
-        return carRepository.findByUser(userModel);
+        return carRepository.findByUserModel(userModel);
     }
 }

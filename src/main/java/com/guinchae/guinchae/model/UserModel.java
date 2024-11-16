@@ -47,11 +47,11 @@ public class UserModel implements UserDetails, Principal {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "_user_roles",
-            joinColumns = @JoinColumn(name = "_user_id"),
-            inverseJoinColumns = @JoinColumn(name = "_role_id")
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private List<RoleModel> roles;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "userModel", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<VehicleModel> vehicleModels;
 
     @CreatedDate

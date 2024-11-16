@@ -50,7 +50,7 @@ public class AuthenticationService {
                 .password(passwordEncoder.encode(registrationRequest.getPassword()))
                 .accountLocked(false)
                 .enabled(false)
-                .roleModels(List.of(userRole))
+                .roles(List.of(userRole))
                 .build();
         userRepository.save(user);
         sendValidationEmail(user);

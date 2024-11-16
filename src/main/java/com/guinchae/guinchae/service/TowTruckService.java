@@ -41,7 +41,7 @@ public class TowTruckService {
                 .model(towTruckRegistrationDto.getModel())
                 .brandName(towTruckRegistrationDto.getBrandName())
                 .year(towTruckRegistrationDto.getYear())
-                .townTruckDriver(driver)
+                .towTruckDriver(driver)
                 .build();
 
         towTruckRepository.save(towTruck);
@@ -51,6 +51,6 @@ public class TowTruckService {
         UserModel userModel = userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
 
-        return towTruckRepository.findByUser(userModel);
+        return towTruckRepository.findByUserModel(userModel);
     }
 }

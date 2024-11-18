@@ -20,13 +20,13 @@ public class TowTruckRegistrationDto {
     @NotEmpty(message = "Placa do carro é necessária!")
     @NotBlank(message = "Placa do carro é necessária!")
     private String licensePlate;
-    @NotEmpty(message = "Modelo do carro é necessária!")
-    @NotBlank(message = "Modelo do carro é necessária!")
+    @NotEmpty(message = "Modelo do guincho é necessário!")
+    @NotBlank(message = "Modelo do guincho é necessário!")
     private String model;
-    @NotEmpty(message = "Marca do carro é necessária!")
-    @NotBlank(message = "Marca do carro é necessária!")
+    @NotEmpty(message = "A marca do guincho é necessária!")
+    @NotBlank(message = "A marca do guincho é necessária!")
     private String brandName;
-    @NotEmpty(message = "Ano do carro é necessária!")
-    @NotBlank(message = "Ano do carro é necessária!")
+    @NotEmpty(message = "Ano do guincho é necessário!")
+    @NotBlank(message = "Ano do guincho é necessário!")
     private int year;
 }

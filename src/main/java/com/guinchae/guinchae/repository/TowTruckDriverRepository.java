@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface TowTruckDriverRepository extends JpaRepository<TowTruckDriverModel, Long> {
 
-    Optional<TowTruckDriverModel> findById(Long Id);
+    Optional<TowTruckDriverModel> findByEmail(String email);
 }

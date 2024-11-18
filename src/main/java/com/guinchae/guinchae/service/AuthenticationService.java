@@ -58,7 +58,7 @@ public class AuthenticationService {
 
     private void sendValidationEmail(UserModel userModel) throws MessagingException {
         var newToken = generateAndSaveActivationToken(userModel);
-        emailService.sendEmail(
+        emailService.sendConfirmationEmail(
                 userModel.getEmail(),
                 userModel.fullName(),
                 EmailTemplateName.ACTIVATE_ACCOUNT,
@@ -91,7 +91,7 @@ public class AuthenticationService {
         return codeBuilder.toString();
     }
 
-    public AuthenticationResponseDto authenticate(AuthenticationRequestDto request) {
+    public AuthenticationResponseDto  authenticate(AuthenticationRequestDto request) {
         var authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),

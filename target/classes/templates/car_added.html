@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carro Adicionado</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .header {
+      text-align: center;
+      background-color: #28a745;
+      color: #ffffff;
+      padding: 20px;
+      border-radius: 8px 8px 0 0;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    .content {
+      padding: 20px;
+      text-align: center;
+    }
+    .content p {
+      font-size: 16px;
+      color: #333;
+    }
+    .car-info {
+      margin: 20px 0;
+      padding: 15px;
+      background-color: #f0f0f0;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+    .car-info p {
+      margin: 5px 0;
+      font-size: 16px;
+      color: #007bff;
+    }
+    .button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 15px 30px;
+      background-color: #007bff;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .button:hover {
+      background-color: #0056b3;
+    }
+    .footer {
+      text-align: center;
+      padding: 10px;
+      color: #777;
+      font-size: 14px;
+    }
+    .footer a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Carro Adicionado com Sucesso!</h1>
+  </div>
+  <div class="content">
+    <p>Olá <span th:text="${username}"></span>,</p>
+    <p>Um novo carro foi adicionado à sua conta com os seguintes detalhes:</p>
+
+    <div class="car-info">
+      <p><strong>Modelo:</strong> <span th:text="${carModel}"></span></p>
+      <p><strong>Placa:</strong> <span th:text="${licensePlate}"></span></p>
+    </div>
+
+    <a href="{{confirmationUrl}}" class="button">Ver Meu Carro</a>
+    <p>Se você não autorizou essa ação, por favor, entre em contato com o suporte imediatamente.</p>
+  </div>
+  <div class="footer">
+    <p>Obrigado por usar o Guincha-e!</p>
+  </div>
+</div>
+</body>
+</html>

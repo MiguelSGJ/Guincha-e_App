@@ -18,4 +18,5 @@ public class TowTruckDriverModel extends UserModel {
     @OneToMany(mappedBy = "towTruckDriver", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<TowTruckModel> towTruckModel;
     private String cnhNumber;
+    private boolean isAvailable;
 }

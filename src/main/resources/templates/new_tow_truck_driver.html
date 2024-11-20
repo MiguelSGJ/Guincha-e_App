@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo ao Guincha-e como Guincheiro!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #007bff;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+        .content p {
+            font-size: 16px;
+            color: #333333;
+            line-height: 1.5;
+        }
+        .content .highlight {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f9f9f9;
+            font-size: 14px;
+            color: #777777;
+        }
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Bem-vindo ao Time de Guincheiros!</h1>
+    </div>
+    <div class="content">
+        <p>Olá, <span class="highlight" th:text="${username}"></span>,</p>
+        <p>Parabéns! Agora você é oficialmente um <strong>Guincheiro</strong> no sistema Guincha-e. Estamos empolgados por ter você em nosso time!</p>
+        <p>Com sua nova função, você pode começar a aceitar solicitações de guincho e ajudar nossos clientes sempre que precisarem.</p>
+        <p>Se você tiver alguma dúvida ou precisar de suporte, não hesite em nos contatar.</p>
+    </div>
+    <div class="footer">
+        <p>Obrigado por fazer parte do Guincha-e!</p>
+    </div>
+</div>
+</body>
+</html>

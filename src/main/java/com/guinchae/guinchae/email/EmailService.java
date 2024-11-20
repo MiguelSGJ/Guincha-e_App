@@ -108,4 +108,41 @@ public class EmailService {
         mailSender.send(mimeMessage);
     }
 
+    @Async
+    public void sendTowTruckDriverEmail(String to,
+                                      String username,
+                                      EmailTemplateName emailTemplate,
+                                      String subject) throws MessagingException {
+        String templateName;
+        if (emailTemplate == null) {
+            templateName = "ttdriver_added";
+        } else {
+            templateName = emailTemplate.getName();
+        }
+
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(
+                mimeMessage,
+                MULTIPART_MODE_MIXED,
+                UTF_8.name()
+        );
+
+
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("username", username);
+
+        Context context = new Context();
+        context.setVariables(properties);
+
+        mimeMessageHelper.setFrom("guinchae@gmail.com");
+        mimeMessageHelper.setTo(to);
+        mimeMessageHelper.setSubject(subject);
+
+
+        String templateContent = templateEngine.process(templateName, context);
+        mimeMessageHelper.setText(templateContent, true);
+
+        mailSender.send(mimeMessage);
+    }
+
 }

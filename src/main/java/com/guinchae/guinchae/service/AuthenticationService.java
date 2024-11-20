@@ -73,7 +73,7 @@ public class AuthenticationService {
         var token = TokenModel.builder()
                 .token(generatedToken)
                 .createdAt(LocalDateTime.now())
-                .expiresAt(LocalDateTime.now().plusMinutes(10))
+                .expiresAt(LocalDateTime.now().plusMinutes(25))
                 .userModel(userModel)
                 .build();
         tokenRepository.save(token);

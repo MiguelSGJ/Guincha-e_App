@@ -43,7 +43,7 @@ public class TowTruckDriverService {
                 .Id(user.getId())
                 .roles(user.getRoles())
                 .cnhNumber(registration.getCnhNumber())
-                .isAvailable(true)
+                .isAvailable(false)
                 .build();
 
         // Adiciona a role de tow truck driver a lista de roles

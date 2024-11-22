@@ -15,13 +15,5 @@ public class CustomerService {
     private final UserRepository userRepository;
     private final TowTruckDriverRepository towTruckDriverRepository;
 
-    // TO DO → Pegar o motorista mais próximo, implementar com a api do GOOGLE MAPS
-    public TowTruckDriverModel getNearestDriver(){
-        return null;
-    }
-
-    public void assignDriverToRequest(){
-
-    }
 
 }

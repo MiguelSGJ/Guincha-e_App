@@ -19,4 +19,6 @@ public class TowTruckDriverModel extends UserModel {
     private List<TowTruckModel> towTruckModel;
     private String cnhNumber;
     private boolean isAvailable;
+
+    private boolean isAssigned;
 }

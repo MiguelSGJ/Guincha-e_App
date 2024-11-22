@@ -14,6 +14,7 @@ public class RequestDto {
     @NotBlank(message = "A sua localização não pode estar vazia!")
     @NotEmpty(message = "A sua localização não pode estar vazia!")
     private String pickupLocation;
+    private String dropLocation;
     // Não coloquei a validação porque um usuario pode não querer colocar uma mensagem adicional quando fizer a solicitação de um guincho!
     private String message;
 

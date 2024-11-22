@@ -40,7 +40,7 @@ public class TowTruckDriverService {
 
         // Permanece com o id e a role padrão de usuario
         var driver = TowTruckDriverModel.builder()
-                .Id(user.getId())
+                .id(user.getId())
                 .roles(user.getRoles())
                 .cnhNumber(registration.getCnhNumber())
                 .isAvailable(false)

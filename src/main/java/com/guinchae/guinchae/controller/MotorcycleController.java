@@ -18,7 +18,7 @@ public class MotorcycleController {
 
     private final MotorcycleService motorcycleService;
 
-    @PostMapping("register")
+    @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> registerMotorcycle(
             @RequestBody @Valid MotorcycleRegistrationDto motorcycleRegistrationDto) throws MessagingException {

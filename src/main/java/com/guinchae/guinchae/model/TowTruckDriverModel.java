@@ -20,5 +20,8 @@ public class TowTruckDriverModel extends UserModel {
     private String cnhNumber;
     private boolean isAvailable;
 
+    @Embedded
+    private LocationModel currentLocation;
+
     private boolean isAssigned;
 }

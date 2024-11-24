@@ -31,7 +31,7 @@ public class TowTruckController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("list-tow-truck")
+    @GetMapping("/list-tow-truck")
     @ResponseStatus
     public ResponseEntity<List<TowTruckModel>> getAllTowTrucks() {
         String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();

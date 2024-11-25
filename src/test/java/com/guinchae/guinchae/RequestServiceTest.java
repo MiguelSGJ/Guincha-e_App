@@ -22,6 +22,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyDouble;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
 public class RequestServiceTest {
@@ -68,16 +69,26 @@ public class RequestServiceTest {
         when(mapboxService.geocoding("Avenida Paulista, São Paulo"))
                 .thenReturn(geocodingResponse);
 
-        // Simular cálculo de distância
-        RouteDto routeDto = new RouteDto();
-        routeDto.setDistance(500.0);
-        routeDto.setDuration(300.0);
+        // Simular distâncias diferentes para cada motorista
+        RouteDto routeDto1 = new RouteDto();
+        routeDto1.setDistance(300.0); // Distância para driver1
 
-        MapboxRouteResponseDto mapboxRouteResponse = new MapboxRouteResponseDto();
-        mapboxRouteResponse.setRoutes(List.of(routeDto));
+        RouteDto routeDto2 = new RouteDto();
+        routeDto2.setDistance(500.0); // Distância para driver2
 
-        when(mapboxService.caculateDistance(anyDouble(), anyDouble(), anyDouble(), anyDouble()))
-                .thenReturn(mapboxRouteResponse);
+        MapboxRouteResponseDto response1 = new MapboxRouteResponseDto();
+        response1.setRoutes(List.of(routeDto1));
+
+        MapboxRouteResponseDto response2 = new MapboxRouteResponseDto();
+        response2.setRoutes(List.of(routeDto2));
+
+        when(mapboxService.caculateDistance(
+                eq(10.0), eq(10.0), anyDouble(), anyDouble())
+        ).thenReturn(response1);
+
+        when(mapboxService.caculateDistance(
+                eq(20.0), eq(20.0), anyDouble(), anyDouble())
+        ).thenReturn(response2);
 
         // Executar o método
         List<TowTruckDriverModel> nearestDrivers = requestService.getNearestDrivers(request);
@@ -86,5 +97,6 @@ public class RequestServiceTest {
         assertNotNull(nearestDrivers, "A lista de motoristas não deve ser nula");
         assertEquals(2, nearestDrivers.size(), "Devem ser retornados 2 motoristas");
         assertEquals(1L, nearestDrivers.get(0).getId(), "O motorista mais próximo deve ser o driver1");
+        assertEquals(2L, nearestDrivers.get(1).getId(), "O segundo motorista deve ser o driver2");
     }
 }

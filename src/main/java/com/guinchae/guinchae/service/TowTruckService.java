@@ -4,9 +4,7 @@ import com.guinchae.guinchae.email.EmailService;
 import com.guinchae.guinchae.email.EmailTemplateName;
 import com.guinchae.guinchae.model.TowTruckModel;
 import com.guinchae.guinchae.model.TowTruckDriverModel;
-import com.guinchae.guinchae.model.UserModel;
 import com.guinchae.guinchae.repository.TowTruckDriverRepository;
-import com.guinchae.guinchae.repository.UserRepository;
 import com.guinchae.guinchae.model.dto.TowTruckRegistrationDto;
 import com.guinchae.guinchae.repository.TowTruckRepository;
 import jakarta.mail.MessagingException;
@@ -22,7 +20,6 @@ public class TowTruckService {
 
     private final TowTruckRepository towTruckRepository;
     private final TowTruckDriverRepository towTruckDriverRepository;
-    private final UserRepository userRepository;
     private final EmailService emailService;
 
     public void registerTowTruck(TowTruckRegistrationDto towTruckRegistrationDto) throws MessagingException {
@@ -32,18 +29,18 @@ public class TowTruckService {
             throw new RuntimeException("Usuário não autenticado!");
         }
 
-        UserModel userModel = userRepository.findByEmail(userEmail)
+        TowTruckDriverModel towTruckDriverModel = towTruckDriverRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
 
         // Verifica se o usuario possui a role de tow truck driver
-        boolean role = userModel.getRoles().stream()
+        boolean role = towTruckDriverModel.getRoles().stream()
                 .anyMatch(r -> r.getName().equals("ROLE_TTDRIVER"));
 
         if(!role) {
             throw new RuntimeException("Usuário não possui permissão para adicionar um guincho!");
         }
 
-        TowTruckDriverModel driver = towTruckDriverRepository.findById(userModel.getId())
+        TowTruckDriverModel driver = towTruckDriverRepository.findById(towTruckDriverModel.getId())
                 .orElseThrow(() -> new RuntimeException("Usuário não é um guincheiro"));
 
         var towTruck = TowTruckModel.builder()

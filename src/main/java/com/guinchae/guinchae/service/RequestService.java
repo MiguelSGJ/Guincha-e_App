@@ -7,16 +7,14 @@ import com.guinchae.guinchae.model.dto.MapboxGeocodingResponseDto;
 import com.guinchae.guinchae.model.dto.RequestDto;
 import com.guinchae.guinchae.model.type.RequestStatusType;
 import com.guinchae.guinchae.repository.RequestRepository;
+import com.guinchae.guinchae.repository.RoleRepository;
 import com.guinchae.guinchae.repository.TowTruckDriverRepository;
 import com.guinchae.guinchae.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +24,7 @@ public class RequestService {
     private final UserRepository userRepository;
     private final TowTruckDriverRepository towTruckDriverRepository;
     private final MapboxService mapboxService;
+    private final RoleRepository roleRepository;
 
     public void createRequest(RequestDto requestDto) {
         String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -59,6 +58,7 @@ public class RequestService {
             throw new RuntimeException("Não foi possível localizar o endereço: " + request.getPickupAddress());
         }
 
+        // Obtém as coordenadas a partir do endereço
         List<Double> coordinates = mapboxGeocode.getFeatures().get(0).getCoordinates();
         double longitude = coordinates.get(0);
         double latitude = coordinates.get(1);
@@ -67,17 +67,22 @@ public class RequestService {
 
         Map<TowTruckDriverModel, Double> driverDistances = new HashMap<>();
         for (TowTruckDriverModel driver : availableDrivers) {
-            var distance = mapboxService.caculateDistance(
-                    driver.getCurrentLocation().getLatitude(),
-                    driver.getCurrentLocation().getLongitude(),
-                    latitude,
-                    longitude);
+            try {
+                var distance = mapboxService.caculateDistance(
+                        driver.getCurrentLocation().getLatitude(),
+                        driver.getCurrentLocation().getLongitude(),
+                        latitude,
+                        longitude);
 
-            if (distance.getRoutes() == null || distance.getRoutes().isEmpty()) {
-                throw new RuntimeException("Erro ao calcular distancia para o motorista: " + driver.getName());
+                if (distance.getRoutes() == null || distance.getRoutes().isEmpty()) {
+                    throw new RuntimeException("Nenhuma rota encontrada para o motorista: " + driver.getName());
+                }
+
+                driverDistances.put(driver, distance.getRoutes().get(0).getDistance());
+            } catch (RuntimeException e) {
+                System.out.println("Erro ao calcular distancia para o motorista: " + driver.getName());
+                throw new RuntimeException(e);
             }
-
-            driverDistances.put(driver, distance.getRoutes().get(0).getDistance());
         }
         return driverDistances.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue())   // Ordena os motoristas pela distancia
@@ -85,8 +90,13 @@ public class RequestService {
                 .toList();  // Coloca os motoristas na lista
     }
 
+    public void assignDriver(Long id) {
+        List<Long> driverIds = new ArrayList<>();
+        this.assignDriverToRequest(id,driverIds);
+    }
+
     // Método que atribui um guincheiro a uma solicitação, e depois espera que o guincheiro aceite ou não a corrida
-    public void assignDriverToRequest(Long requestId, List<Long> triedDriverIds) {
+    private void assignDriverToRequest(Long requestId, List<Long> triedDriverIds) {
         RequestModel request = requestRepository.findById(requestId)
                 .orElseThrow(() -> new RuntimeException("Solicitação não encontrada!"));
 
@@ -127,6 +137,13 @@ public class RequestService {
         TowTruckDriverModel towTruckDriver = towTruckDriverRepository.findByEmail(driverEmail)
                 .orElseThrow(() -> new RuntimeException("Motorista não encontrado!"));
 
+        boolean role = towTruckDriver.getRoles().stream()
+                .anyMatch(r -> r.getName().equals("ROLE_TTDRIVER"));
+
+        if(!role) {
+            throw new RuntimeException("Usuário não possui permissão para adicionar um guincho!");
+        }
+
         if(!request.getTowTruckDriver().getId().equals(towTruckDriver.getId())) {
             throw new RuntimeException("Motorista não atribuído a solicitação");
         }
@@ -160,5 +177,21 @@ public class RequestService {
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
 
         return requestRepository.findAllByClient(user);
+    }
+
+    public Optional<RequestModel> getDriverRequest() {
+        String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        TowTruckDriverModel towTruckDriver = towTruckDriverRepository.findByEmail(userEmail)
+                                .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
+
+        boolean role = towTruckDriver.getRoles().stream()
+                .anyMatch(r -> r.getName().equals("ROLE_TTDRIVER"));
+
+        if(!role) {
+            throw new RuntimeException("Usuário não possui permissão para adicionar um guincho!");
+        }
+
+        return requestRepository.findRequestModelByTowTruckDriver(towTruckDriver);
     }
 }

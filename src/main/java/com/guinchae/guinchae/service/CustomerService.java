@@ -1,6 +1,5 @@
 package com.guinchae.guinchae.service;
 
-import com.guinchae.guinchae.model.TowTruckDriverModel;
 import com.guinchae.guinchae.repository.RequestRepository;
 import com.guinchae.guinchae.repository.TowTruckDriverRepository;
 import com.guinchae.guinchae.repository.UserRepository;

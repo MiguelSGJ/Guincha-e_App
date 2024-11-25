@@ -24,6 +24,12 @@ public class GuinchaeApplication {
 						RoleModel.builder().name("USER").build()
 				);
 			}
+
+			if(roleRepository.findByName("ROLE_TTDRIVER").isEmpty()) {
+				roleRepository.save(
+						RoleModel.builder().name("ROLE_TTDRIVER").build()
+				);
+			}
 		};
 	}
 

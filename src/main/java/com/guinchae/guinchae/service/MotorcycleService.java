@@ -2,7 +2,6 @@ package com.guinchae.guinchae.service;
 
 import com.guinchae.guinchae.email.EmailService;
 import com.guinchae.guinchae.email.EmailTemplateName;
-import com.guinchae.guinchae.model.CarModel;
 import com.guinchae.guinchae.model.MotorcycleModel;
 import com.guinchae.guinchae.model.UserModel;
 import com.guinchae.guinchae.repository.UserRepository;

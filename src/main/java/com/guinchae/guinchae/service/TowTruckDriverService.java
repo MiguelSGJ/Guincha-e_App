@@ -5,7 +5,6 @@ import com.guinchae.guinchae.email.EmailTemplateName;
 import com.guinchae.guinchae.model.LocationModel;
 import com.guinchae.guinchae.model.RequestModel;
 import com.guinchae.guinchae.model.TowTruckDriverModel;
-import com.guinchae.guinchae.model.dto.DriverLocationDto;
 import com.guinchae.guinchae.model.dto.TowTruckDriverRegistrationDto;
 import com.guinchae.guinchae.repository.RequestRepository;
 import com.guinchae.guinchae.repository.RoleRepository;

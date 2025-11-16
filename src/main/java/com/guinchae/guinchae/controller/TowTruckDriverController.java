@@ -1,6 +1,5 @@
 package com.guinchae.guinchae.controller;
 
-import com.guinchae.guinchae.model.LocationModel;
 import com.guinchae.guinchae.model.dto.TowTruckDriverRegistrationDto;
 import com.guinchae.guinchae.service.RequestService;
 import com.guinchae.guinchae.service.TowTruckDriverService;
@@ -31,15 +30,5 @@ public class TowTruckDriverController {
     public ResponseEntity<?> getRequests(){
         towTruckDriverService.getAssignedRequest();
         return ResponseEntity.ok(towTruckDriverService.getAssignedRequest());
-    }
-
-    @PostMapping("/location")
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> updateLocation(
-            @RequestBody LocationModel locationModel
-            )
-    {
-        towTruckDriverService.updateDriverLocation(locationModel);
-        return ResponseEntity.ok().build();
     }
 }

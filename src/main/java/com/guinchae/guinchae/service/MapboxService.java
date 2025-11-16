@@ -17,7 +17,10 @@ public class MapboxService {
     private static final String MAPBOX_URL_DISTANCE_CALCULATOR = "https://api.mapbox.com/directions/v5/mapbox/driving";
     private static final String MAPBOX_URL_GEOCODING = "https://api.mapbox.com/geocoding/v5/mapbox.places";
 
-    public MapboxRouteResponseDto caculateDistance(double driverLat, double driverLong, double pickupLat, double pickupLong) {
+    public MapboxRouteResponseDto caculateDistance(double driverLat,
+                                                   double driverLong,
+                                                   double pickupLat,
+                                                   double pickupLong) {
         RestTemplate restTemplate = new RestTemplate();
 
         String url = String.format("%s/%f,%f;%f,%f?access_token=%s",
@@ -37,7 +40,10 @@ public class MapboxService {
 
         String encodedAddress = address.replace(" ", "%20");
 
-        String url = String.format("%s/%s.json?access_token=%s&limit=1&autocomplete=true", MAPBOX_URL_GEOCODING, encodedAddress,apikey);
+        String url = String.format("%s/%s.json?access_token=%s&limit=1&autocomplete=true",
+                MAPBOX_URL_GEOCODING,
+                encodedAddress,
+                apikey);
 
         MapboxGeocodingResponseDto response = restTemplate.getForObject(url, MapboxGeocodingResponseDto.class);
 

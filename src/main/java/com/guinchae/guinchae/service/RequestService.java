@@ -69,8 +69,8 @@ public class RequestService {
         for (TowTruckDriverModel driver : availableDrivers) {
             try {
                 var distance = mapboxService.caculateDistance(
-                        driver.getCurrentLocation().getLatitude(),
-                        driver.getCurrentLocation().getLongitude(),
+                        driver.getLatitude(),
+                        driver.getLongitude(),
                         latitude,
                         longitude);
 

@@ -2,7 +2,6 @@ package com.guinchae.guinchae.service;
 
 import com.guinchae.guinchae.email.EmailService;
 import com.guinchae.guinchae.email.EmailTemplateName;
-import com.guinchae.guinchae.model.LocationModel;
 import com.guinchae.guinchae.model.RequestModel;
 import com.guinchae.guinchae.model.TowTruckDriverModel;
 import com.guinchae.guinchae.model.dto.TowTruckDriverRegistrationDto;
@@ -85,13 +84,14 @@ public class TowTruckDriverService {
     }
 
     // No frontend vai chamar essa função e atualizar a localização do motorista por meio do browser, utilizando a GEOLOCATION API do html5
-    public void updateDriverLocation (LocationModel locationDto) {
+    public void updateDriverLocation (Long lat, Long lng) {
         String driverEmail = SecurityContextHolder.getContext().getAuthentication().getName();
 
         TowTruckDriverModel driver = towTruckDriverRepository.findByEmail(driverEmail)
                 .orElseThrow(() -> new RuntimeException("Motorista não encontrado"));
 
-        driver.setCurrentLocation(locationDto);
+        driver.setLatitude(lat);
+        driver.setLongitude(lng);
         towTruckDriverRepository.save(driver);
         System.out.println(driver.getFirstName() + "teve a localização atualizada com sucesso!");
     }

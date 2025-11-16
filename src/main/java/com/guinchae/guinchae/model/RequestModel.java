@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "_request")
+@Table(name = "request")
 @Getter
 @Setter
 @Builder
@@ -23,13 +23,12 @@ import java.util.List;
 public class RequestModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "request_sequence")
-    @SequenceGenerator(name = "request_sequence", sequenceName = "request_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private UserModel client;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private TowTruckDriverModel towTruckDriver;
     @Enumerated(EnumType.STRING)
     private RequestStatusType status;

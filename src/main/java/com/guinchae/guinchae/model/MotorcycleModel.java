@@ -8,7 +8,7 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 @Entity
-@Table(name = "_motorcycle")
+@Table(name = "motorcycle")
 @Getter
 @Setter
 @SuperBuilder
@@ -19,6 +19,7 @@ public class MotorcycleModel extends VehicleModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private int towStrapPoints; // Quantidade de pontos de amarração da moto
     private boolean isElectric;
 }

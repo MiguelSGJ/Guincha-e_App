@@ -50,7 +50,7 @@ public class TowTruckService {
                 .model(towTruckRegistrationDto.getModel())
                 .brandName(towTruckRegistrationDto.getBrandName())
                 .year(towTruckRegistrationDto.getYear())
-                .towTruckDriver(driver)
+                .driver(driver)
                 .build();
 
         towTruckRepository.save(towTruck);

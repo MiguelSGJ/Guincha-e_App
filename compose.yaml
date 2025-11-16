@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: tales
       PGDATA: /var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5434:5432"
     networks:
       - postgres-db-network
     restart: unless-stopped

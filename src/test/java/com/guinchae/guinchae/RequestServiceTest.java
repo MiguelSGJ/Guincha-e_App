@@ -1,6 +1,5 @@
 package com.guinchae.guinchae;
 
-import com.guinchae.guinchae.model.LocationModel;
 import com.guinchae.guinchae.model.RequestModel;
 import com.guinchae.guinchae.model.TowTruckDriverModel;
 import com.guinchae.guinchae.model.dto.FeatureDto;
@@ -46,11 +45,13 @@ public class RequestServiceTest {
         // Simular motoristas disponíveis
         TowTruckDriverModel driver1 = new TowTruckDriverModel();
         driver1.setId(1L);
-        driver1.setCurrentLocation(new LocationModel(10.0, 10.0));
+        driver1.setLatitude(10L);
+        driver1.setLongitude(10L);
 
         TowTruckDriverModel driver2 = new TowTruckDriverModel();
         driver2.setId(2L);
-        driver2.setCurrentLocation(new LocationModel(20.0, 20.0));
+        driver2.setLatitude(20L);
+        driver2.setLongitude(20L);
 
         when(towTruckDriverRepository.findAvailableDrivers())
                 .thenReturn(Arrays.asList(driver1, driver2));

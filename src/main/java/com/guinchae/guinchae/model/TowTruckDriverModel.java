@@ -1,7 +1,10 @@
 package com.guinchae.guinchae.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;
@@ -12,16 +15,17 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-@Table(name = "_tow_truck_driver")
+@Table(name = "tow_truck_driver")
 public class TowTruckDriverModel extends UserModel {
 
-    @OneToMany(mappedBy = "towTruckDriver", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<TowTruckModel> towTruckModel;
+
     private String cnhNumber;
     private boolean isAvailable;
 
-    @Embedded
-    private LocationModel currentLocation;
+    private Long latitude;
+    private Long longitude;
 
     private boolean isAssigned;
 }

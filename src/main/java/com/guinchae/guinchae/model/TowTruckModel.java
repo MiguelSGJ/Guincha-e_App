@@ -5,7 +5,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 @Entity
-@Table(name = "_tow_truck")
+@Table(name = "tow_truck")
 @Getter
 @Setter
 @SuperBuilder
@@ -17,7 +17,6 @@ public class TowTruckModel extends VehicleModel {
     private double platformLength;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tow_truck_driver_id")
-    private TowTruckDriverModel towTruckDriver;
-
+    @JoinColumn(name = "driver_id")
+    private TowTruckDriverModel driver;
 }

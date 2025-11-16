@@ -22,7 +22,7 @@ public abstract class VehicleModel {
     private int year;
     private int weight;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "_user_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private UserModel userModel;
 }

@@ -106,7 +106,6 @@ public class AuthenticationService {
                 .token(jwtToken).build();
     }
 
-
     public void activateAccount(String token) throws MessagingException {
         TokenModel savedTokenModel = tokenRepository.findByToken(token)
                 .orElseThrow(() -> new RuntimeException("Token invalido!"));

@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "_user")
+@Table(name = "users")
 @EntityListeners(AuditingEntityListener.class)
 @Inheritance(strategy = InheritanceType.JOINED)
 public class UserModel implements UserDetails, Principal {
@@ -39,20 +39,22 @@ public class UserModel implements UserDetails, Principal {
     @Column(unique = true)
     private String cpf;
     private String phoneNumber;
-    @Embedded
+    @OneToOne
     private UserAddressModel adress;
     private String password;
+
     private boolean enabled;
     private boolean accountLocked;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "_user_roles",
+            name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private List<RoleModel> roles;
-    @OneToMany(mappedBy = "userModel", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy = "userModel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<VehicleModel> vehicleModels;
 
     @CreatedDate

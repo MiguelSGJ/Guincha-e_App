@@ -45,13 +45,13 @@ public class RequestServiceTest {
         // Simular motoristas disponíveis
         TowTruckDriverModel driver1 = new TowTruckDriverModel();
         driver1.setId(1L);
-        driver1.setLatitude(10L);
-        driver1.setLongitude(10L);
+        driver1.setLatitude((double) 10L);
+        driver1.setLongitude((double) 10L);
 
         TowTruckDriverModel driver2 = new TowTruckDriverModel();
         driver2.setId(2L);
-        driver2.setLatitude(20L);
-        driver2.setLongitude(20L);
+        driver2.setLatitude((double) 20L);
+        driver2.setLongitude((double) 20L);
 
         when(towTruckDriverRepository.findAvailableDrivers())
                 .thenReturn(Arrays.asList(driver1, driver2));

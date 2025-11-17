@@ -43,6 +43,9 @@ public class UserModel implements UserDetails, Principal {
     private UserAddressModel adress;
     private String password;
 
+    private Double latitude;
+    private Double longitude;
+
     private boolean enabled;
     private boolean accountLocked;
 

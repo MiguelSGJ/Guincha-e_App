@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 @Entity
+@Table(name = "vehicle")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

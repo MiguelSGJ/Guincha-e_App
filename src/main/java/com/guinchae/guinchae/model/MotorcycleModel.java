@@ -16,10 +16,6 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 public class MotorcycleModel extends VehicleModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     private int towStrapPoints; // Quantidade de pontos de amarração da moto
     private boolean isElectric;
 }

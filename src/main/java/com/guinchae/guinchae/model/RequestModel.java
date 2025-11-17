@@ -43,9 +43,7 @@ public class RequestModel {
     private List<Long> triedDrivers = new ArrayList<>();
 
     @CreatedDate
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime createdAt;
     @LastModifiedDate
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime updatedAt;
 }

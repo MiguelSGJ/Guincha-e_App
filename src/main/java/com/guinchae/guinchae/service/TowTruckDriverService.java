@@ -90,8 +90,8 @@ public class TowTruckDriverService {
         TowTruckDriverModel driver = towTruckDriverRepository.findByEmail(driverEmail)
                 .orElseThrow(() -> new RuntimeException("Motorista não encontrado"));
 
-        driver.setLatitude(lat);
-        driver.setLongitude(lng);
+        driver.setLatitude(lat.doubleValue());
+        driver.setLongitude(lng.doubleValue());
         towTruckDriverRepository.save(driver);
         System.out.println(driver.getFirstName() + "teve a localização atualizada com sucesso!");
     }

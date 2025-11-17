@@ -17,9 +17,6 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 public class CarModel extends VehicleModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private boolean towHookPresent;
     private boolean eletricParkingBrake;
     private String towInstructions;

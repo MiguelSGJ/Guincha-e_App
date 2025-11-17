@@ -24,8 +24,8 @@ public class TowTruckDriverModel extends UserModel {
     private String cnhNumber;
     private boolean isAvailable;
 
-    private Long latitude;
-    private Long longitude;
+    private Double latitude;
+    private Double longitude;
 
     private boolean isAssigned;
 }
